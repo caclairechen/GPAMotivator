@@ -7,8 +7,9 @@ class Course:
 		self.assessments = []
 		self.final_gpa = 0
 
-	def addAssessment(self, assess):
-		self.assessments.append(assess)
+	def addAssessment(self, assess_name, assess_portion):
+		new_assess = Assessment(assess_name, assess_portion)
+		self.assessments.append(new_assess)
 
 	def removeAssessment(self, assess_name):
 		for assess in self.assessments:

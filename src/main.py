@@ -1,5 +1,4 @@
-from course import Course
-from assessment import Assessment
+from helper import * 
 
 print ("Welcome to GPAMotivator!\n")
 
@@ -18,49 +17,37 @@ while True:
 				if inputs[1] == "course":
 					course_name = input("Course name: ")
 					course_target_gpa = input("Course target GPA: ")
-					new_course = Course(course_name, course_target_gpa)
-					courses.append(new_course)
+
+					addCourseToList(courses, course_name, course_target_gpa)
 
 					print("\nCourse added! You current courses are: ")
-					for course in courses:
-						print(course.name+" "+course.target_gpa)
+					printCoursesList(courses)
 
 				elif inputs[1] == "assessment":
 					assess_name = input("Assessment name: ")
 					assess_portion = input("Assessment portion: ")
-					new_assess = Assessment(assess_name, assess_portion)
-
 					course_to_add = input("Add to course: ")
-					for course in courses:
-						if course.name == course_to_add:
-							course.addAssessment(new_assess)
+
+					course = findCourseFromList(courses, course_to_add)
+					addAssessmentToCourse(course, assess_name, assess_portion)
 
 					print("\nAssessment added! You current courses are: ")
-					for course in courses:
-						print(course.name+" "+course.target_gpa)
-						for assess in course.assessments:
-							print("\t"+assess.name+" "+assess.portion)
+					printCoursesList(courses, True)
 
 			elif inputs[0] == "remove":
 				if inputs[1] == "course":
 					course_to_remove = input("Name of course to be removed: ")
-					for course in courses:
-						if course.name == course_to_remove:
-							courses.remove(course)
+
+					removeCourseFromList(courses, course_to_remove)
+
 					print("\nCourse removed! You current courses are: ")
-					for course in courses:
-						print(course.name+" "+course.target_gpa)
+					printCoursesList(courses)
 
 				elif inputs[1] == "assessment":
 					assess_to_remove = input("Name of assessment to be removed: ")
-					belonged_course = input("Under which course: ")
+					belonged_course_name = input("Under which course: ")
 
-					for course in courses:
-						if course.name == belonged_course:
-							course.removeAssessment(assess_to_remove)
+					removeAssesssmentFromCourse(courses, belonged_course_name, assess_to_remove)
 
 					print("\nAssessment removed! You current courses are: ")
-					for course in courses:
-						print(course.name+" "+course.target_gpa)
-						for assess in course.assessments:
-							print("\t"+assess.name+" "+assess.portion)
+					printCoursesList(courses, True)
