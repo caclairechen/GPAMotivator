@@ -11,7 +11,17 @@ class Course:
 		new_assess = Assessment(assess_name, assess_portion)
 		self.assessments.append(new_assess)
 
-	def removeAssessment(self, assess_name):
+	def findAssessment(self, assess_name):
 		for assess in self.assessments:
 			if assess.name == assess_name:
-				self.assessments.remove(assess)
+				return assess
+
+	def removeAssessment(self, assess_name):
+		assess = self.findAssessment(assess_name)
+		if assess:
+			self.assessments.remove(assess)
+
+	def addGradeToAssessment(self, assess_name, grade):
+		assess = self.findAssessment(assess_name)
+		if assess:
+			assess.addGrade(grade)
