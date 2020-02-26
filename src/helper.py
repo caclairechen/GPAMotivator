@@ -2,10 +2,10 @@ from course import Course
 
 def printCoursesList(courses, withAssessments = False):
 	for course in courses:
-		print(course.name+" "+course.target_gpa)
+		print("{} {}".format(course.name, course.target_gpa))
 		if withAssessments:
 			for assess in course.assessments:
-				print("\t"+assess.name+" "+assess.portion)
+				print("\t{} {} {}".format(assess.name, assess.portion, assess.grade))
 
 def findCourseFromList(courses, course_name):
 	for course in courses:
@@ -28,3 +28,6 @@ def removeAssesssmentFromCourse(courses, course_name, assess_name):
 	course = findCourseFromList(courses, course_name)
 	if course:
 		course.removeAssessment(assess_name)
+
+def addGradeToAssessment(course, assess_name, grade):
+	course.addGradeToAssessment(assess_name, grade)

@@ -9,7 +9,7 @@ while True:
 	if user_input == "":
 		break
 	else:
-		print("You entered: "+user_input)
+		print("You entered: {}".format(user_input))
 		inputs = user_input.split( )
 
 		if len(inputs) == 2:
@@ -32,6 +32,17 @@ while True:
 					addAssessmentToCourse(course, assess_name, assess_portion)
 
 					print("\nAssessment added! You current courses are: ")
+					printCoursesList(courses, True)
+
+				elif inputs[1] == "grade":
+					grade = input("Grade is: ")
+					assess_to_add = input("Add to which assessment: ")
+					course_to_add = input("Under which course: ")
+
+					course = findCourseFromList(courses, course_to_add)
+					addGradeToAssessment(course, assess_to_add, grade)
+
+					print("\nGrade added! You current courses are: ")
 					printCoursesList(courses, True)
 
 			elif inputs[0] == "remove":
