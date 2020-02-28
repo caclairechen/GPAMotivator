@@ -6,3 +6,6 @@ class Assessment:
 
 	def addGrade(self, grade):
 		self.grade = grade
+
+	def calculateGradeToFinal(self):
+		return float(float(self.portion) * float(self.grade))

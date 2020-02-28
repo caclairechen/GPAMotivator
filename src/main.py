@@ -62,3 +62,12 @@ while True:
 
 					print("\nAssessment removed! You current courses are: ")
 					printCoursesList(courses, True)
+
+			elif inputs[0] == "get":
+				if inputs[1] == "finalGPA":
+					course_name = input("Which course: ")
+
+					course = findCourseFromList(courses, course_name)
+					final_gpa = getFinalGPAFromCourse(course)
+
+					print("Your final GPA is {}".format(final_gpa))
