@@ -25,3 +25,8 @@ class Course:
 		assess = self.findAssessment(assess_name)
 		if assess:
 			assess.addGrade(grade)
+
+	def calculateFinalGPA(self):
+		for assess in self.assessments:
+			self.final_gpa += assess.calculateGradeToFinal()
+		return self.final_gpa

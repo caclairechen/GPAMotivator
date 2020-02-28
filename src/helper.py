@@ -31,3 +31,6 @@ def removeAssesssmentFromCourse(courses, course_name, assess_name):
 
 def addGradeToAssessment(course, assess_name, grade):
 	course.addGradeToAssessment(assess_name, grade)
+
+def getFinalGPAFromCourse(course):
+	return course.calculateFinalGPA()
