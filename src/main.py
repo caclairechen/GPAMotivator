@@ -5,6 +5,7 @@ print ("Welcome to GPAMotivator!\n")
 courses = []
 
 def addCommand(inputs):
+	
 	if inputs[1] == "course":
 					course_name = input("Course name: ")
 					course_target_gpa = input("Course target GPA: ")
