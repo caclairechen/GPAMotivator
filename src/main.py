@@ -71,3 +71,19 @@ while True:
 					final_gpa = getFinalGPAFromCourse(course)
 
 					print("Your final GPA is {}".format(final_gpa))
+
+				elif inputs[1] == "currentGPA":
+					course_name = input("Which course: ")
+
+					course = findCourseFromList(courses, course_name)
+					final_gpa = getCurrentGPAFromCourse(course)
+
+					print("Your curretn GPA is {}".format(final_gpa))
+
+				elif inputs[1] == "neededGPA":
+					course_name = input("Which course: ")
+
+					course = findCourseFromList(courses, course_name)
+					final_gpa = getNeededGPAFromCourse(course)
+
+					print("Your needed GPA is {}".format(final_gpa))
