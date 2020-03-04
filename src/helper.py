@@ -2,7 +2,7 @@ from course import Course
 
 def printCoursesList(courses, withAssessments = False):
 	for course in courses:
-		print("{} {}".format(course.name, course.target_gpa))
+		print("{} {}".format(course.name, course.target_percent_gpa))
 		if withAssessments:
 			for assess in course.assessments:
 				print("\t{} {} {}".format(assess.name, assess.portion, assess.grade))
@@ -33,4 +33,11 @@ def addGradeToAssessment(course, assess_name, grade):
 	course.addGradeToAssessment(assess_name, grade)
 
 def getFinalGPAFromCourse(course):
-	return course.calculateFinalGPA()
+	return course.calculateFinalPercentGPA()
+
+def getCurrentGPAFromCourse(course):
+	current_gpa, current_portion = course.calculateCurrentPercentGPA()
+	return current_gpa
+
+def getNeededGPAFromCourse(course):
+	return course.percentGPANeededForTarget()

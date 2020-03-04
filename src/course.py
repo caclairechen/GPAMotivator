@@ -1,11 +1,11 @@
 from assessment import Assessment
 
 class Course:
-	def __init__(self, name, target_gpa):
+	def __init__(self, name, target_percent_gpa):
 		self.name = name
-		self.target_gpa = target_gpa
+		self.target_percent_gpa = target_percent_gpa
 		self.assessments = []
-		self.final_gpa = 0
+		self.final_percent_gpa = 0
 
 	def addAssessment(self, assess_name, assess_portion):
 		new_assess = Assessment(assess_name, assess_portion)
@@ -26,7 +26,24 @@ class Course:
 		if assess:
 			assess.addGrade(grade)
 
-	def calculateFinalGPA(self):
+	def calculateFinalPercentGPA(self):
 		for assess in self.assessments:
-			self.final_gpa += assess.calculateGradeToFinal()
-		return self.final_gpa
+			self.final_percent_gpa += assess.calculateGradeToFinal()
+		return self.final_percent_gpa
+
+	def calculateCurrentPercentGPA(self):
+		current_percent_gpa = 0
+		current_portion = 0
+
+		for assess in self.assessments:
+			if assess.hasGrade():
+				current_percent_gpa += assess.calculateGradeToFinal()
+				current_portion += float(assess.portion)
+
+		return current_percent_gpa, current_portion
+
+	def percentGPANeededForTarget(self):
+		current_percent_gpa, current_portion = self.calculateCurrentPercentGPA()
+		percent_needed = (float(self.target_percent_gpa) - float(current_percent_gpa)) / (1 - current_portion)
+		return percent_needed
+
