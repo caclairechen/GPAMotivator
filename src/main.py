@@ -26,15 +26,18 @@ def addCommand(inputs):
 		print("\nAssessment added! You current courses are: ")
 		printCoursesList(courses, True)
 	elif inputs[1] == "grade":
-				grade = input("Grade is: ")
-				assess_to_add = input("Add to which assessment: ")
-				course_to_add = input("Under which course: ")
+		grade = input("Grade is: ")
+		assess_to_add = input("Add to which assessment: ")
+		course_to_add = input("Under which course: ")
 
-				course = findCourseFromList(courses, course_to_add)
-				addGradeToAssessment(course, assess_to_add, grade)
+		course = findCourseFromList(courses, course_to_add)
+		addGradeToAssessment(course, assess_to_add, grade)
 
-				print("\nGrade added! You current courses are: ")
-				printCoursesList(courses, True)
+		print("\nGrade added! You current courses are: ")
+		printCoursesList(courses, True)
+
+	elif inputs[1] == "-h" or "help":
+		print("Use 'add course' or 'add assessment' or 'add grade'")
 
 def removeCommand(inputs):
 	if inputs[1] == "course":
@@ -96,7 +99,7 @@ while True:
 			
 
 		elif len(inputs) == 1 and (inputs[0] == "help" or inputs[0] == "-h"):
-			print("you can use add, remove, get.")
+			print("Current support following command: 'add, remove, get', \nmore informaiton, use 'add help' or 'add -h'")
 
 		elif inputs[0] == 'print' or inputs[0] == '-p':
 			printCoursesList(courses)
